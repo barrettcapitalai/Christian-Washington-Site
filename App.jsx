@@ -230,7 +230,7 @@ export default function App() {
           <div className="feed" data-reveal>
             <p className="feed__label">Latest</p>
             {news.length > 0 && (
-              <a className="feed__lead" href="#" onClick={(e) => e.preventDefault()}>
+              <a className="feed__lead" href={news[newsIdx].url} target="_blank" rel="noopener noreferrer">
                 <span className="feed__tag">{news[newsIdx].tag}</span>
                 <span className="feed__title">{news[newsIdx].title}</span>
                 <span className="feed__meta">
@@ -243,10 +243,18 @@ export default function App() {
                 .filter((_, i) => i !== newsIdx)
                 .slice(0, 3)
                 .map((n) => (
-                  <li key={n.title}>
-                    <span className="feed__tag feed__tag--sm">{n.tag}</span>
-                    <span>{n.title}</span>
+                                    <li key={n.title}>
+                    <a
+                      href={n.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", gap: ".8rem", color: "inherit", textDecoration: "none", flex: 1 }}
+                    >
+                      <span className="feed__tag feed__tag--sm">{n.tag}</span>
+                      <span>{n.title}</span>
+                    </a>
                   </li>
+
                 ))}
             </ul>
           </div>
