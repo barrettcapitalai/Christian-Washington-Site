@@ -1,9 +1,10 @@
+# Single-file site: no build step. Netlify serves index.html directly and
+# still bundles the serverless functions in netlify/functions.
+
 [build]
-  command = "npm run build"
-  publish = "dist"
+  command = "echo No build needed"
+  publish = "."
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-
-# update-stats sets its own cron via `export const config` in the function file.
