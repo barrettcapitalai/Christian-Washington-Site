@@ -77,36 +77,11 @@ function getLiveStats() {
 }
 
 function getLiveNews() {
-  // Real, recent items — paraphrased. Swap for a live feed filtered by name+team.
-  return Promise.resolve([
-    {
-      tag: "Recap",
-      date: "Oct 2025",
-      title:
-        "Aztecs roll Colorado State 45-24 at Snapdragon — their best offensive day there in four years",
-      source: "Sports Illustrated",
-    },
-    {
-      tag: "Preview",
-      date: "Oct 2025",
-      title: "San Diego State eyes a fourth straight win heading into Nevada",
-      source: "Sports Illustrated",
-    },
-    {
-      tag: "Feature",
-      date: "Jun 2025",
-      title:
-        "Players to watch: the hometown back returning to SDSU as an offensive X-factor",
-      source: "Sons of Montezuma",
-    },
-    {
-      tag: "Roster",
-      date: "2025",
-      title: "Coastal Carolina transfer joins a retooled Aztec backfield",
-      source: "Mountain West coverage",
-    },
-  ]);
+  return fetch("/.netlify/functions/get-news")
+    .then((r) => r.json())
+    .catch(() => []);
 }
+
 
 export default function App() {
   const [stats, setStats] = useState(null);
